@@ -2,4 +2,7 @@
     <string name="app_name">Tarjeta bip  Completa</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="ingresa_numero_de_bip">ingresa numero de bip</string>
+    <string name="saldo">saldo</string>
+    <string name="enviar_consulta">enviar consulta</string>
 </resources>

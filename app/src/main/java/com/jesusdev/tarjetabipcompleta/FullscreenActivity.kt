@@ -2,7 +2,6 @@ package com.jesusdev.tarjetabipcompleta
 
 import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -11,16 +10,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.jesusdev.tarjetabipcompleta.databinding.ActivityFullscreenBinding
 import com.jesusdev.tarjetabipcompleta.viewmodel.ViewModelSaldo
-import retrofit2.Invocation.of
-import java.util.EnumSet.of
-import java.util.List.of
-import java.util.Map.of
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -83,31 +74,54 @@ class FullscreenActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        //24327200
+        var id : String
+
+
         //aca escribir logica
         //pasando id hard
-        viewModelSaldo.getSaldoById("24327200")
-        viewModelSaldo.allTarjetabip.observe(this, {
-            it?.let {
-                binding.fullscreenContent.text =it.saldoTarjeta
-                Log.d("saldo", it.saldoTarjeta)
+
+
+
+        binding.btnEnviar.setOnClickListener {
+            id = binding.numeroBip.editableText.toString()
+            viewModelSaldo.getSaldoById(id)
+            // viewModelSaldo.allTarjetabip.value
+
         }
 
 
+        viewModelSaldo.allTarjetabip.observe(this, {
+            it?.let {
 
+
+                binding.fullscreenContent.text =it.saldoTarjeta
+                Log.d("saldo", it.saldoTarjeta)
+
+                binding.fullscreenContent.setText(it.id)
+                binding.resultado.setText("Tu saldo : ${it.saldoTarjeta}")
+
+                Log.d("saldo", it.saldoTarjeta)
+            }
         })
 
 
         // Set up the user interaction to manually show or hide the system UI.
         fullscreenContent = binding.fullscreenContent
         fullscreenContent.setOnClickListener {
-            toggle()
+            //toggle()
+
+
         }
 
         fullscreenContentControls = binding.fullscreenContentControls
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        binding.dummyButton.setOnTouchListener(delayHideTouchListener)
+        binding.dummyButton.setOnTouchListener(delayHideTouchListener
+
+
+        )
 
 
     }

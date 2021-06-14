@@ -10,15 +10,18 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+
+
+
     <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
+        android:text="@string/saldo"
         android:textColor="?attr/fullscreenTextColor"
-        android:textSize="50sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <!-- This FrameLayout insets its children based on system windows using
@@ -46,6 +49,36 @@
                 android:text="@string/dummy_button" />
 
         </LinearLayout>
+
+<com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/numeroBip"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/ingresa_numero_de_bip"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="50dp"/>
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/enviar_consulta"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/resultado"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="150dp"
+            android:text="@string/saldo"
+            android:gravity="center"
+            android:backgroundTint="@color/white"
+            android:background="@color/black"
+
+        />
+
     </FrameLayout>
 
 </FrameLayout>
