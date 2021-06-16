@@ -77,8 +77,7 @@ class FullscreenActivity : AppCompatActivity() {
         binding = ActivityFullscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        //obtener prefence manager
-        // 24327200
+
 
         //obtener prefence manager esta deprecado
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
@@ -86,8 +85,7 @@ class FullscreenActivity : AppCompatActivity() {
         val editor =pref.edit()
 
         var id : String
-
-
+        id = binding.numeroBip.editableText.toString()
         //aca escribir logica
         //pasando id hard
 
@@ -95,9 +93,11 @@ class FullscreenActivity : AppCompatActivity() {
 
             //aca se setea la id que se entrega al metedo getSaldoById (solicitud query a API)
             id = binding.numeroBip.editableText.toString()
+
             editor.putString(key,id)
             editor.apply()
             viewModelSaldo.getSaldoById(id)
+
 
 
 
@@ -110,11 +110,11 @@ class FullscreenActivity : AppCompatActivity() {
             it?.let {
 
 
-                binding.fullscreenContent.text =it.saldoTarjeta
-                Log.d("saldo", it.saldoTarjeta)
-
-                binding.fullscreenContent.setText(it.id)
-                binding.resultado.setText("Tu saldo : ${it.saldoTarjeta}")
+                binding.resultado.text =      ("Tu Saldo Disponible   : ${it.saldoTarjeta}")
+                binding.saldoCard.text =      ("Tu Saldo Disponible   : ${it.saldoTarjeta}")
+                binding.fechaConsulta.text=   ("Última Fecha de Carga : ${it.fechaSaldo}")
+                binding.estadoContrato.text = ("Estado Tarjeta Bip!   : ${it.estadoContrato}")
+                binding.numeroBipCard.text =  ("N° de Tarjeta Bip!    : ${it.id}")
 
                 Log.d("saldo", it.saldoTarjeta)
             }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="@color/light_blue_A200"
+    android:background="#3886AF"
     android:theme="@style/ThemeOverlay.TarjetaBipCompleta.FullscreenContainer"
     tools:context=".FullscreenActivity">
 
@@ -25,10 +24,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/purple_500"
+        android:background="@drawable/redondes_texto"
         android:backgroundTint="@color/white"
         android:gravity="center"
         android:hint="@string/ingresar_n_de_bip"
+        android:text="@string/_24327200"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,31 +41,33 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/black"
+
         android:gravity="center"
-        android:hint="aqui la publicidad"
-        android:textColor="@color/black"
+        android:hint="@string/publicidad"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardImg" />
 
-    <androidx.appcompat.widget.AppCompatCheckedTextView
+    <TextView
         android:id="@+id/resultado"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/black"
 
-        android:backgroundTint="@color/white"
-        android:gravity="center"
+        android:background="@drawable/redondes_texto"
         android:hint="@string/saldo_disponible"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numeroBip" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEnviar"
 
         android:layout_width="match_parent"
@@ -73,11 +75,30 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/purple_500"
+        android:background="@drawable/btnenviar"
         android:text="@string/enviar_consulta"
         app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/archivo_black"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultado" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCargarBip"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/archivo_black"
+       android:textColor="@color/white"
+        android:background="@drawable/orange"
+        android:text="@string/carga_tu_bip_online"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviar" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardImg"
@@ -107,70 +128,143 @@
             <TextView
                 android:id="@+id/fullscreen_content"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:drawableStart="@drawable/ic_bus"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/convergence"
                 android:gravity="center"
-                android:keepScreenOn="true"
+
                 android:paddingStart="2dp"
-                android:paddingTop="2dp"
+
                 android:text="@string/red_metropolitana_de_transportes"
+
+
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:drawableStartCompat="@drawable/ic_bus"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imgBip"
-                android:layout_width="102dp"
-                android:layout_height="73dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="132dp"
+                android:layout_height="122dp"
 
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/tarejta"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toBottomOf="@+id/fullscreen_content" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="match_parent"
+                android:layout_width="192dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/redondes_texto"
                 android:padding="9dp"
                 android:text="@string/atenci_n_telef_nica_600_730_00_73_800_73_00_73"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/light_blue_900"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgBip"
                 app:layout_constraintTop_toBottomOf="@+id/fullscreen_content" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="77dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/light_blue_900"
+                    android:backgroundTint="#A6FFFFFF"
+                    app:cardCornerRadius="12dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:orientation="vertical"
+                        android:textColor="@color/black">
+
+                        <TextView
+                            android:id="@+id/numeroBipCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/n_de_tarjeta_bip"
+                            android:paddingLeft="8dp"
+                            android:paddingEnd="10dp"
+                            android:textAllCaps="true"
+                            android:textColor="@color/light_blue_900" />
+
+                        <TextView
+                            android:id="@+id/estadoContrato"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/estado_de_la_tarjeta"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="10dp"
+                            android:textColor="@color/light_blue_900" />
+
+                        <TextView
+                            android:id="@+id/fechaConsulta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/fecha_de_consulta"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="10dp"
+                            android:textColor="@color/light_blue_900" />
+
+                        <TextView
+                            android:id="@+id/saldoCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/saldo_de_tu_cardbip"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="10dp"
+                            android:textColor="@color/light_blue_900" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="102dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/tusaldo2"
-
-                android:clickable="true"
-                android:soundEffectsEnabled="false"
-                android:text="Tú Saldo "
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/imgBip"
-                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/imageView4"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/ic_codigoo__1_"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imgBip"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -181,11 +275,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="141dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="141dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnviar"
+        app:layout_constraintTop_toBottomOf="@+id/btnCargarBip"
         tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
