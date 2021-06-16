@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/fullscreenBackgroundColor"
+
+    android:background="@color/light_blue_A200"
     android:theme="@style/ThemeOverlay.TarjetaBipCompleta.FullscreenContainer"
     tools:context=".FullscreenActivity">
 
@@ -12,73 +15,177 @@
          TextureView, etc. -->
 
 
-
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/saldo"
-        android:textColor="?attr/fullscreenTextColor"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <FrameLayout
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/numeroBip"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/purple_500"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:hint="@string/ingresar_n_de_bip"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adsView" />
 
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="@style/Widget.Theme.TarjetaBipCompleta.ButtonBar.Fullscreen"
+    <TextView
+        android:id="@+id/adsView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/black"
+        android:gravity="center"
+        android:hint="aqui la publicidad"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardImg" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/resultado"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/black"
+
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:hint="@string/saldo_disponible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numeroBip" />
+
+    <Button
+        android:id="@+id/btnEnviar"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/purple_500"
+        android:text="@string/enviar_consulta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultado" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+
+        android:layout_marginTop="45dp"
+
+        android:layout_marginEnd="12dp"
+        android:contextClickable="true"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            android:layout_height="match_parent"
+            android:background="@color/light_blue_900"
+            android:fitsSystemWindows="true"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="50dp">
 
-            <Button
-                android:id="@+id/dummy_button"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
+
+            <TextView
+                android:id="@+id/fullscreen_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:drawableStart="@drawable/ic_bus"
+                android:gravity="center"
+                android:keepScreenOn="true"
+                android:paddingStart="2dp"
+                android:paddingTop="2dp"
+                android:text="@string/red_metropolitana_de_transportes"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgBip"
+                android:layout_width="102dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/tarejta"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/redondes_texto"
+                android:padding="9dp"
+                android:text="@string/atenci_n_telef_nica_600_730_00_73_800_73_00_73"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/light_blue_900"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fullscreen_content" />
 
-        </LinearLayout>
 
-<com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/numeroBip"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/white"
-            android:text="@string/ingresa_numero_de_bip"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:layout_marginTop="50dp"/>
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="102dp"
+                android:layout_height="72dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/tusaldo2"
 
-        <Button
-            android:id="@+id/btnEnviar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="100dp"
-            android:text="@string/enviar_consulta"/>
+                android:clickable="true"
+                android:soundEffectsEnabled="false"
+                android:text="Tú Saldo "
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/imgBip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/resultado"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="150dp"
-            android:text="@string/saldo"
-            android:gravity="center"
-            android:backgroundTint="@color/white"
-            android:background="@color/black"
 
-        />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="141dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviar"
+        tools:srcCompat="@tools:sample/avatars" />
+</androidx.constraintlayout.widget.ConstraintLayout>

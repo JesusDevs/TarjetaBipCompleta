@@ -5,4 +5,9 @@
     <string name="ingresa_numero_de_bip">ingresa numero de bip</string>
     <string name="saldo">saldo</string>
     <string name="enviar_consulta">enviar consulta</string>
+    <string name="saldo_disponible">Saldo Disponible :</string>
+    <string name="atenci_n_telef_nica_600_730_00_73_800_73_00_73">Atención Telefónica 600 730 00 73 -- 800 73 00 73</string>
+    <string name="ingresar_n_de_bip">Ingresar N° de Bip</string>
+    <string name="conoce_el_saldo_de_tu_tarjeta">Conoce El Saldo de Tu Tarjeta</string>
+    <string name="red_metropolitana_de_transportes">RED METROPOLITANA DE TRANSPORTES</string>
 </resources>
