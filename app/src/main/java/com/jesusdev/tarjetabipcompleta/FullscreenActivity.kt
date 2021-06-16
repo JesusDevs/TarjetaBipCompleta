@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -12,11 +13,13 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import com.jesusdev.tarjetabipcompleta.databinding.ActivityFullscreenBinding
 import com.jesusdev.tarjetabipcompleta.viewmodel.ViewModelSaldo
+import java.util.prefs.Preferences
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
+@Suppress("DEPRECATION")
 class FullscreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFullscreenBinding
@@ -24,6 +27,7 @@ class FullscreenActivity : AppCompatActivity() {
     private lateinit var fullscreenContentControls: LinearLayout
     private val hideHandler = Handler()
     private val viewModelSaldo : ViewModelSaldo by viewModels()
+    private val key = "MY_KEY"
 
     @SuppressLint("InlinedApi")
     private val hidePart2Runnable = Runnable {
@@ -74,18 +78,29 @@ class FullscreenActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        //24327200
+
+        //obtener prefence manager esta deprecado
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        //put shared
+        val editor =pref.edit()
+
         var id : String
-
-
+        id = binding.numeroBip.editableText.toString()
         //aca escribir logica
         //pasando id hard
 
-
-
         binding.btnEnviar.setOnClickListener {
+
+            //aca se setea la id que se entrega al metedo getSaldoById (solicitud query a API)
             id = binding.numeroBip.editableText.toString()
+
+            editor.putString(key,id)
+            editor.apply()
             viewModelSaldo.getSaldoById(id)
+
+
+
+
             // viewModelSaldo.allTarjetabip.value
 
         }
@@ -95,11 +110,11 @@ class FullscreenActivity : AppCompatActivity() {
             it?.let {
 
 
-                binding.fullscreenContent.text =it.saldoTarjeta
-                Log.d("saldo", it.saldoTarjeta)
-
-                binding.fullscreenContent.setText(it.id)
-                binding.resultado.setText("Tu saldo : ${it.saldoTarjeta}")
+                binding.resultado.text =      ("Tu Saldo Disponible   : ${it.saldoTarjeta}")
+                binding.saldoCard.text =      ("Tu Saldo Disponible   : ${it.saldoTarjeta}")
+                binding.fechaConsulta.text=   ("Última Fecha de Carga : ${it.fechaSaldo}")
+                binding.estadoContrato.text = ("Estado Tarjeta Bip!   : ${it.estadoContrato}")
+                binding.numeroBipCard.text =  ("N° de Tarjeta Bip!    : ${it.id}")
 
                 Log.d("saldo", it.saldoTarjeta)
             }
@@ -108,20 +123,13 @@ class FullscreenActivity : AppCompatActivity() {
 
         // Set up the user interaction to manually show or hide the system UI.
         fullscreenContent = binding.fullscreenContent
-        fullscreenContent.setOnClickListener {
-            //toggle()
 
 
-        }
 
-        fullscreenContentControls = binding.fullscreenContentControls
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        binding.dummyButton.setOnTouchListener(delayHideTouchListener
 
-
-        )
 
 
     }
@@ -146,8 +154,8 @@ class FullscreenActivity : AppCompatActivity() {
     private fun hide() {
         // Hide UI first
         supportActionBar?.hide()
-        fullscreenContentControls.visibility = View.GONE
-        isFullscreen = false
+
+        isFullscreen = true
 
         // Schedule a runnable to remove the status and navigation bar after a delay
         hideHandler.removeCallbacks(showPart2Runnable)

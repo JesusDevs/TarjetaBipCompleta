@@ -8,7 +8,7 @@ class RepoBip {
 
     private val retrofit = ClienteRetrofit.retrofitInstance()
 
-    //variable live data
+    //variable live data observador del repo, ante un cambio nos actualiza la vista
     val liveDataSaldo = MutableLiveData<TarjetaBip>()
 
     suspend fun getPhotoFromInternetRepo(id : String ){
