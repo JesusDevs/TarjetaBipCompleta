@@ -2,6 +2,8 @@ package com.jesusdev.tarjetabipcompleta
 
 import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
@@ -11,9 +13,12 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.jesusdev.tarjetabipcompleta.databinding.ActivityFullscreenBinding
 import com.jesusdev.tarjetabipcompleta.viewmodel.ViewModelSaldo
 import java.util.prefs.Preferences
+import kotlin.time.seconds
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -73,39 +78,46 @@ class FullscreenActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityFullscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
 
         //obtener prefence manager esta deprecado
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         //put shared
         val editor =pref.edit()
-
         var id : String
+
+
         id = binding.numeroBip.editableText.toString()
-        //aca escribir logica
-        //pasando id hard
-
         binding.btnEnviar.setOnClickListener {
-
             //aca se setea la id que se entrega al metedo getSaldoById (solicitud query a API)
             id = binding.numeroBip.editableText.toString()
-
+            //guardando key de bip
             editor.putString(key,id)
             editor.apply()
+            //hacer consulta en corutina by id
             viewModelSaldo.getSaldoById(id)
+            binding.imageView.setAnimation(R.raw.bus)
+            binding.imageView.playAnimation()
 
-
-
-
-            // viewModelSaldo.allTarjetabip.value
 
         }
 
+        binding.btnCargarBip.setOnClickListener {
 
+
+            //intent to share the text
+            val shareIntent = Intent()
+            val url = "https://cargatubip.metro.cl/CargaTuBipV2/"
+            shareIntent.action = Intent.ACTION_VIEW
+            shareIntent.data = Uri.parse(url)
+            startActivity(Intent.createChooser(shareIntent,"Carga Tú Bip!"))
+
+
+        }
         viewModelSaldo.allTarjetabip.observe(this, {
             it?.let {
 
@@ -114,7 +126,7 @@ class FullscreenActivity : AppCompatActivity() {
                 binding.saldoCard.text =      ("Tu Saldo Disponible   : ${it.saldoTarjeta}")
                 binding.fechaConsulta.text=   ("Última Fecha de Carga : ${it.fechaSaldo}")
                 binding.estadoContrato.text = ("Estado Tarjeta Bip!   : ${it.estadoContrato}")
-                binding.numeroBipCard.text =  ("N° de Tarjeta Bip!    : ${it.id}")
+                binding.nCodigo.text =        ("N° Tarjeta : ${it.id}")
 
                 Log.d("saldo", it.saldoTarjeta)
             }
