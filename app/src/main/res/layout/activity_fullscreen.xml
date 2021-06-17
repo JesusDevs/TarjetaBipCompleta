@@ -17,12 +17,32 @@
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
 
+    <TextView
+        android:id="@+id/spalshText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btnenviar"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+
+        android:text="@string/consulta_tu_saldo"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adsView" />
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/numeroBip"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/redondes_texto"
         android:backgroundTint="@color/white"
@@ -32,43 +52,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adsView" />
-
-    <TextView
-        android:id="@+id/adsView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="7dp"
-
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="7dp"
-        android:gravity="center"
-        android:hint="@string/publicidad"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/numeroBip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardImg" />
-
-    <TextView
-        android:id="@+id/resultado"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
-
-        android:background="@drawable/redondes_texto"
-        android:hint="@string/saldo_disponible"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/archivo_black"
-        android:gravity="center"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numeroBip" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEnviar"
@@ -76,15 +60,15 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/btnenviar"
-        android:text="@string/enviar_consulta"
-        app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/archivo_black"
+        android:text="@string/enviar_consulta"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultado" />
+        app:layout_constraintTop_toBottomOf="@+id/numeroBip" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCargarBip"
@@ -109,21 +93,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
 
-        android:layout_marginTop="65dp"
-
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="5dp"
         android:contextClickable="true"
         app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/adsView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/spalshText">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/light_blue_900">
 
 
@@ -287,7 +268,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="15dp"
         android:visibility="visible"
@@ -298,4 +279,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCargarBip"
         app:srcCompat="@raw/bus" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adsView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:hint="@string/publicidad"
+        android:textColor="@color/white"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-12dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

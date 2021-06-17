@@ -36,7 +36,10 @@ android {
 }
 
 dependencies {
-//cardview
+    //Amor
+    implementation 'com.google.android.gms:play-services-ads:20.2.0'
+
+    //cardview
     implementation "androidx.cardview:cardview:1.0.0"
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

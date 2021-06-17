@@ -15,6 +15,9 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.jesusdev.tarjetabipcompleta.databinding.ActivityFullscreenBinding
 import com.jesusdev.tarjetabipcompleta.viewmodel.ViewModelSaldo
 import java.util.prefs.Preferences
@@ -26,7 +29,7 @@ import kotlin.time.seconds
  */
 @Suppress("DEPRECATION")
 class FullscreenActivity : AppCompatActivity() {
-
+    private lateinit var mAdView: AdView
     private lateinit var binding: ActivityFullscreenBinding
     private lateinit var fullscreenContent: TextView
     private lateinit var fullscreenContentControls: LinearLayout
@@ -51,7 +54,7 @@ class FullscreenActivity : AppCompatActivity() {
     }
     private val showPart2Runnable = Runnable {
         // Delayed display of UI elements
-        supportActionBar?.show()
+
         fullscreenContentControls.visibility = View.VISIBLE
     }
     private var isFullscreen: Boolean = false
@@ -80,26 +83,35 @@ class FullscreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFullscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
 
+        //publicidad
+        MobileAds.initialize(this) {}
+        //Banner bajo lista de juegos
+        mAdView = findViewById(R.id.adsView)
+        val adRequest =AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
+        //animacion Lottie cargando bus
+        binding.imageView.setAnimation(R.raw.bus)
         //obtener prefence manager esta deprecado
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         //put shared
         val editor =pref.edit()
         var id : String
 
-
         id = binding.numeroBip.editableText.toString()
         binding.btnEnviar.setOnClickListener {
-            //aca se setea la id que se entrega al metedo getSaldoById (solicitud query a API)
+            //aca se setea la id que se entrega al metodo getSaldoById (solicitud query a API)
             id = binding.numeroBip.editableText.toString()
             //guardando key de bip
             editor.putString(key,id)
             editor.apply()
             //hacer consulta en corutina by id
             viewModelSaldo.getSaldoById(id)
+
+            //play a la animación Lottie, podria cambiar la animación por otra
             binding.imageView.setAnimation(R.raw.bus)
             binding.imageView.playAnimation()
 

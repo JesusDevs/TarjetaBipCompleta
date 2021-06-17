@@ -19,5 +19,6 @@
     <string name="saldo_de_tu_cardbip">Saldo de tu CardBip! : $ 2.000 </string>
     <string name="_24327200">24327200</string>
     <string name="carga_tu_bip_online">Carga tu Bip! online</string>
-    <string name="_1_2_1_5_7_9_3_3">1 2 1 5 7 9 3 3</string>
+    <string name="_1_2_1_5_7_9_3_3">N° 1 2 1 5 7 9 3 3</string>
+    <string name="consulta_tu_saldo">CONSULTA TU SALDO</string>
 </resources>
